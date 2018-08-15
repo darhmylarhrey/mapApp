@@ -1,0 +1,13 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+#mapid{ 
+    height: 590px; 
+}
+section .col-9{
+    padding-left: 0%;
+}
+
+h4{
+color: #fff
+}
