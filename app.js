@@ -8,33 +8,73 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     accessToken: 'pk.eyJ1IjoiZGV2ZGhyZXkiLCJhIjoiY2prdGd2cHRuMDUyZjNxcXF5d2dpMDl4MiJ9.ZpqGtvzy81aO1ahSJdsQrg'
 }).addTo(mymap);
 
+ 
 // add latlong to UI
-let points = L.popup();
+var liIndex = 0;
 function showMapPoint(e) {
-    const point = points.setLatLng(e.latlng).setContent(e.latlng.toString());
+    const latitude = e.latlng.lat.toFixed(4);
+    const longitude = e.latlng.lng.toFixed(4);
     const result = document.querySelector('#result'); 
     const div = document.createElement('ul');
-    div.classList.add('p-2');
+    // console.log(latitude, longitude);
+    div.classList.add('show-result')
     div.innerHTML = `
-      <li onclick ="deletePoint()">${point._content}<i class="fas fa-trash-alt text-danger"></i></li>
-    `
-    result.appendChild(div);
-     
+     <li onclick ="deletePoint()" id="liPoints" "numIndex" = ${liIndex} >${latitude},${longitude}<i class="fas fa-trash-alt text-danger" style ="float:right"></i></li>
+     `
+     liIndex +=1;
+    result.appendChild(div);    
 }
 mymap.on('click', showMapPoint);
 
-//show marker on Map
-let marker = L.marker()
+//show cicle on map click
+let circle = L.circle();
 function onMapClick(e) {
     const latitude = e.latlng.lat;
     const longitude = e.latlng.lng;
-    marker = L.marker([latitude,longitude]).addTo(mymap);  
+    circle = L.circle([latitude,longitude], { color: 'red', fillColor: '#f03', fillOpacity: 0.5, radius: 40}).addTo(mymap);
 }
 mymap.on('click', onMapClick);
 
 
+
+document.getElementById('latlong-form').addEventListener('click', onButtonClick )
+    
+var marker = L.marker();
+function onButtonClick(){
+    const markerPoints = document.querySelectorAll('#liPoints');
+    for (let i = 0; i < markerPoints.length; i++) { 
+        var showMarkPoint = markerPoints[i].textContent;
+        const marks =  showMarkPoint.split(',');
+        const lat = marks[0]; const lng = marks[1]
+        marker = L.marker([lat, lng]).addTo(mymap);     
+    }           
+}
+
 //Delete latlong point
 function deletePoint(){
-    console.dir(event.target)
-    event.target.parentElement.remove()
+    event.target.parentElement.remove();
+
+    onButtonClick();   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
