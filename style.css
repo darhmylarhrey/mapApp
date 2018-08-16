@@ -4,7 +4,7 @@ body{
 #mapid{ 
     height: 590px; 
 }
-section .col-9{
+section .col-md-10{
     padding-left: 0%;
 }
 
