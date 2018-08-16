@@ -1,13 +1,18 @@
-body{
-    font-family: 'Roboto', sans-serif;
+body,  {
+    font-family: 'Roboto', sans-serif;   
 }
-#mapid{ 
-    height: 590px; 
-}
-section .col-md-10{
-    padding-left: 0%;
+#mapid{
+    height:500px; 
 }
 
-h4{
-color: #fff
+section .col-sm-10{
+    padding-left: 0%;
+}
+section .col-sm-2{
+    padding-right: 0%;
+}
+.navbar-brand{
+    color: #fff;
+    font-size: 20px;
+    
 }
