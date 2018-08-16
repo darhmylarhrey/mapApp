@@ -18,9 +18,9 @@ function showMapPoint(e) {
     const result = document.querySelector('#result'); 
     const div = document.createElement('ul');
     // console.log(latitude, longitude);
-    div.classList.add('show-result')
+    div.classList.add('show-result', 'list-group', 'list-group-flush')
     div.innerHTML = `
-     <li onclick ="deletePoint()" id="liPoints" "numIndex" = ${liIndex} >${latitude},${longitude}<i class="fas fa-trash-alt text-danger" style ="float:right"></i></li>
+     <li onclick ="deletePoint()" class= "list-group-item" id="liPoints" "numIndex" = ${liIndex} >${latitude},${longitude}<i class="fas fa-trash-alt text-danger" style ="float:right"></i></li>
      `
      liIndex +=1;
     result.appendChild(div);    
